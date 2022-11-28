@@ -1254,7 +1254,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		end)
 
-		function Tab:Visible(Value)
+		local Tab = {}
+
+        function Tab:Visible(Value)
 			TabButton.Visible = Value
 			TabPage.Visible = Value
 		end
@@ -1262,8 +1264,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 		function Tab:JumpTo(Page)
 			Elements.UIPageLayout:JumpTo(Page)
 		end
-
-		local Tab = {}
 
 		-- Button
 		function Tab:CreateButton(ButtonSettings)

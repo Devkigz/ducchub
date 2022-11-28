@@ -1324,7 +1324,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Button.Name = NewButton
 			end
 
-            function ButtonSettings:Visible(Value)
+			function ButtonValue:Visible(Value)
 				Button.Visible = Value
 			end
 

@@ -1427,7 +1427,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			function ParagraphValue:Visible(Value)
-				ParagraphValue.Visible = Value
+				Paragraph.Visible = Value
 			end
 
 			return ParagraphValue

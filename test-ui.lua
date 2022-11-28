@@ -1493,7 +1493,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 
 			function InputSettings:Visible(Value)
-				Input.Visible = Value
+				Input.InputFrame.Visible = Value
 			end
 
 		end

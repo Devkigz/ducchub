@@ -1352,6 +1352,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			SDone = true
 
+            function SectionValue:Visible(Value)
+				Section.Visible = Value
+			end
+
 			return SectionValue
 		end
 

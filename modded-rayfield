@@ -11,7 +11,7 @@ duccveloper | Modding
 
 
 local version_url = "https://raw.githubusercontent.com/duccveloper/ducchub/main/version.txt"
-local Release = local response = game:HttpGet(version_url)
+local Release = game:HttpGet(version_url)
 local NotificationDuration = 6.5
 local RayfieldFolder = "DuccHub"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"

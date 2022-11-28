@@ -1495,7 +1495,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			function InputValue:Visible(Value)
 				Input.Visible = Value
 			end
-			return SectionValue
+			return InputValue
 		end
 
 		-- Dropdown

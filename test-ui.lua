@@ -1492,8 +1492,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
 			end)
 
-			function InputSettings:Visible(Value)
-				Input.InputFrame.Visible = Value
+			function InputValue:Visible(Value)
+				Input.Visible = Value
 			end
 
 		end

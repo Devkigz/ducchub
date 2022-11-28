@@ -1409,6 +1409,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Paragraph.Content.Text = NewParagraphSettings.Content
 			end
 
+			function ParagraphValue:Visible(Value)
+				ParagraphValue.Visible = Value
+			end
+
 			return ParagraphValue
 		end
 
@@ -1468,6 +1472,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Input.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
 			end)
+
+			
 		end
 
 		-- Dropdown
@@ -1650,6 +1656,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
+			function DropdownSettings:Visible(Value)
+				Dropdown.Visible = Value
+			end
+
 			return DropdownSettings
 		end
 
@@ -1760,6 +1770,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 					RayfieldLibrary.Flags[KeybindSettings.Flag] = KeybindSettings
 				end
 			end
+
+			function KeybindSettings:Visible(Value)
+				Keybind.Visible = Value
+			end
+
 			return KeybindSettings
 		end
 
@@ -1906,6 +1921,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
+			function ToggleSettings:Visible(Value)
+				Toggle.Visible = Value
+			end
+
 			return ToggleSettings
 		end
 
@@ -2047,6 +2066,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 					RayfieldLibrary.Flags[SliderSettings.Flag] = SliderSettings
 				end
 			end
+
+			function SliderSettings:Visible(Value)
+				Slider.Visible = Value
+			end
+			
 			return SliderSettings
 		end
 

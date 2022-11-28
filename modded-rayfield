@@ -10,12 +10,12 @@ duccveloper | Modding
 ]]
 
 
-
-local Release = "Beta 7R"
+local version_url = "https://raw.githubusercontent.com/duccveloper/ducchub/main/version.txt"
+local Release = local response = game:HttpGet(version_url)
 local NotificationDuration = 6.5
-local RayfieldFolder = "Rayfield"
+local RayfieldFolder = "DuccHub"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
-local ConfigurationExtension = ".rfld"
+local ConfigurationExtension = ".ducchub"
 
 
 

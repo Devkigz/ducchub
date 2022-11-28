@@ -1319,13 +1319,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 				TweenService:Create(Button.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {TextTransparency = 0.9}):Play()
 			end)
 
+			function ButtonValue:Visible(Value)
+				Button.Visible = Value
+			end
+
 			function ButtonValue:Set(NewButton)
 				Button.Title.Text = NewButton
 				Button.Name = NewButton
-			end
-
-			function ButtonValue:Visible(Value)
-				Button.Visible = Value
 			end
 
 			return ButtonValue

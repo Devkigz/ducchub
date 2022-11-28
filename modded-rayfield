@@ -1371,7 +1371,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			function LabelValue:Destroy()
-				Label:Destroy()
+				Label.Visible = false
 			end
 
 			return LabelValue

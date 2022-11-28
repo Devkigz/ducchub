@@ -1370,8 +1370,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Label.Title.Text = NewLabel
 			end
 
-			function LabelValue:Destroy()
-				Label.Visible = false
+			function LabelValue:Visible(Value)
+				Label.Visible = Value
 			end
 
 			return LabelValue

@@ -1350,11 +1350,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Section.Title.Text = NewSection
 			end
 
-			SDone = true
-
             function SectionValue:Visible(Value)
 				Section.Visible = Value
 			end
+
+			SDone = true
 
 			return SectionValue
 		end

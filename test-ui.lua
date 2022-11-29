@@ -1435,6 +1435,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		-- Input
 		function Tab:CreateInput(InputSettings)
+			local InputValue = {}
 
 			local Input = Elements.Template.Input:Clone()
 			Input.Name = InputSettings.Name
@@ -1495,7 +1496,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Input.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
 			end)
-			return InputSettings
+			return InputSettings, InputValue
 		end
 
 		-- Dropdown

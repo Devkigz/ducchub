@@ -1458,7 +1458,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Input.InputFrame.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)
 
 			function InputSettings:Visible(Value)
-				print(Input:GetFullName())
+				Input.Visible = Value
 			end
 
 			Input.InputFrame.InputBox.FocusLost:Connect(function()

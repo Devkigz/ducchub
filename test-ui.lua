@@ -1261,7 +1261,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			TabPage.Visible = Value
 		end
 
-		function Tab:JumpTo(Page)
+		function Window:JumpToTab(Page)
 			Elements.UIPageLayout:JumpTo(Page)
 		end
 

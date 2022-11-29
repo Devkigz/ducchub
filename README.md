@@ -1,5 +1,14 @@
 # ducchub
 The No.69 universal Roblox universal hub.
 
-## Version
-0.1 (pre-release)
+## Versions
+DuccHub: 0.1 (pre-release)
+DuccField: 0.1 (:Visible() release)
+
+## DuccField Modded Features
+- Element:Visible(Boolean)
+#### Code:
+```lua
+Element:Visible(True)
+Element:Visible(False)
+```

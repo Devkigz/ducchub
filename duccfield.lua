@@ -1256,6 +1256,15 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		local Tab = {}
 
+        function Tab:Visible(Value)
+			TabButton.Visible = Value
+			TabPage.Visible = Value
+		end
+
+		function Tab:JumpTo(Page)
+			Elements.UIPageLayout:JumpTo(Page)
+		end
+
 		-- Button
 		function Tab:CreateButton(ButtonSettings)
 			local ButtonValue = {}
@@ -1310,6 +1319,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				TweenService:Create(Button.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {TextTransparency = 0.9}):Play()
 			end)
 
+			function ButtonValue:Visible(Value)
+				Button.Visible = Value
+			end
+
 			function ButtonValue:Set(NewButton)
 				Button.Title.Text = NewButton
 				Button.Name = NewButton
@@ -1339,6 +1352,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			function SectionValue:Set(NewSection)
 				Section.Title.Text = NewSection
+			end
+
+            function SectionValue:Visible(Value)
+				Section.Visible = Value
 			end
 
 			SDone = true
@@ -1410,7 +1427,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			function ParagraphValue:Visible(Value)
-				ParagraphValue.Visible = Value
+				Paragraph.Visible = Value
 			end
 
 			return ParagraphValue
@@ -1418,6 +1435,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		-- Input
 		function Tab:CreateInput(InputSettings)
+			local InputValue = {}
+
 			local Input = Elements.Template.Input:Clone()
 			Input.Name = InputSettings.Name
 			Input.Title.Text = InputSettings.Name
@@ -1437,6 +1456,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			Input.InputFrame.InputBox.PlaceholderText = InputSettings.PlaceholderText
 			Input.InputFrame.Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)
+
+			function InputSettings:Visible(Value)
+				Input.Visible = Value
+			end
 
 			Input.InputFrame.InputBox.FocusLost:Connect(function()
 				
@@ -1472,8 +1495,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Input.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
 				TweenService:Create(Input.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, Input.InputFrame.InputBox.TextBounds.X + 24, 0, 30)}):Play()
 			end)
-
-			
+			return InputSettings, InputValue
 		end
 
 		-- Dropdown

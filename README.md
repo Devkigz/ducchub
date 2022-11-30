@@ -12,3 +12,10 @@ DuccField: 0.1 (:Visible() release)
 Element:Visible(True)
 Element:Visible(False)
 ```
+
+
+- target_tab:SwitchTab()
+#### Code
+```lua
+TargetTab:SwitchTab()
+```

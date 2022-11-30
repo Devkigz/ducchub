@@ -10,6 +10,7 @@ duccveloper | Modding
 ]]
 
 
+
 local version_url = "https://raw.githubusercontent.com/duccveloper/ducchub/main/version.txt"
 local Release = game:HttpGet(version_url)
 local NotificationDuration = 6.5

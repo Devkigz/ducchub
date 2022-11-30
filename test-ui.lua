@@ -2124,6 +2124,49 @@ function RayfieldLibrary:CreateWindow(Settings)
 			return SliderSettings
 		end
 
+		-- Image (Big)
+		function Tab:CreateBigImageLabel(ImageBigSettings)
+			local ImageBigValue = {}
+
+			local ImageBig = Elements.Template.ImageBig:Clone()
+			ImageBig.Image = ImageSettings.Image
+			ImageBig.Visible = true
+			ImageBig.Parent = TabPage
+
+			if Caption then
+				ImageBig.Caption.Text = ImageBigSettings.Caption
+			end
+
+			if BlackCaption then
+				ImageBig.Caption.TextColor3 = Color3.fromRGB(15, 15, 15)
+			end
+
+			ImageBig.BackgroundTransparency = 1
+			ImageBig.UIStroke.Transparency = 1
+			
+			ImageBig.BackgroundColor3 = SelectedTheme.SecondaryElementBackground
+			ImageBig.UIStroke.Color = SelectedTheme.SecondaryElementStroke
+			
+			TweenService:Create(ImageBig, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
+			TweenService:Create(ImageBig.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
+
+			function ImageBigValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+				ImageBig.Image = NewImage
+				if Caption then
+					ImageBig.Caption.Text = NewCaption
+				end
+				if BlackCaption then
+					ImageBig.Caption.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+			end
+
+			function ImageBigValue:Visible(Value)
+				ImageBig.Visible = Value
+			end
+
+			return ImageBigValue
+		end
+
 
 		return Tab
 	end

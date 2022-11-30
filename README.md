@@ -19,3 +19,7 @@ Element:Visible(False)
 ```lua
 TargetTab:SwitchTab()
 ```
+
+# Sneek peek
+![image](https://user-images.githubusercontent.com/67620716/204812380-49f75abe-efc3-4501-bff4-bc8989ae71bf.png)
+

@@ -2129,7 +2129,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local ImageBigValue = {}
 
 			local ImageBig = Elements.Template.ImageBig:Clone()
-			ImageBig.Image = ImageSettings.Image
+			ImageBig.Image = ImageBigSettings.Image
 			ImageBig.Visible = true
 			ImageBig.Parent = TabPage
 

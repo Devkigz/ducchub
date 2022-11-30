@@ -2133,11 +2133,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 			ImageBig.Visible = true
 			ImageBig.Parent = TabPage
 
-			if Caption then
+			if ImageBigSettings.Caption then
 				ImageBig.Caption.Text = ImageBigSettings.Caption
+			else
+				ImageBig.Caption.Text = ""
 			end
 
-			if BlackCaption then
+			if ImageBigSettings.BlackCaption then
 				ImageBig.Caption.TextColor3 = Color3.fromRGB(15, 15, 15)
 			end
 

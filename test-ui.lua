@@ -2143,6 +2143,22 @@ function RayfieldLibrary:CreateWindow(Settings)
 				if ImageSettings.BlackCaption then
 					ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
 				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageBig.Image.Image = NewImage
+					if NewCaption then
+						ImageBig.Title.Text = NewCaption
+					else
+						ImageBig.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageBig.Visible = Value
+				end
 			end
 
 			if ImageSettings.ImageType == "Small" then
@@ -2159,6 +2175,22 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 				if ImageSettings.BlackCaption then
 					ImageSmall.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageSmall.Image.Image = NewImage
+					if NewCaption then
+						ImageSmall.Title.Text = NewCaption
+					else
+						ImageSmall.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageSmall.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageSmall.Visible = Value
 				end
 			end
 
@@ -2177,6 +2209,22 @@ function RayfieldLibrary:CreateWindow(Settings)
 				if ImageSettings.BlackCaption then
 					ImageRight.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
 				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageRight.Image.Image = NewImage
+					if NewCaption then
+						ImageRight.Title.Text = NewCaption
+					else
+						ImageRight.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageRight.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageRight.Visible = Value
+				end
 			end
 
 			if ImageSettings.ImageType == "Left" then
@@ -2193,6 +2241,22 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 				if ImageSettings.BlackCaption then
 					ImageLeft.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageLeft.Image.Image = NewImage
+					if NewCaption then
+						ImageLeft.Title.Text = NewCaption
+					else
+						ImageLeft.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageLeft.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageLeft.Visible = Value
 				end
 			end
 
@@ -2215,36 +2279,25 @@ function RayfieldLibrary:CreateWindow(Settings)
 				ImageButton.MouseButton1Click:Connect(function()
 					ImageSettings.Callback()
 				end)
-			end
 
-			
-
-			ImageBig.BackgroundTransparency = 1
-			ImageBig.UIStroke.Transparency = 1
-			
-			ImageBig.BackgroundColor3 = SelectedTheme.SecondaryElementBackground
-			ImageBig.UIStroke.Color = SelectedTheme.SecondaryElementStroke
-			
-			TweenService:Create(ImageBig, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
-			TweenService:Create(ImageBig.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
-
-			function ImageBigValue:SetImage(NewImage, NewCaption, NewBlackCaption)
-				ImageBig.Image.Image = NewImage
-				if NewCaption then
-					ImageBig.Title.Text = NewCaption
-				else
-					ImageBig.Title.Text = ""
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageButton.Image.Image = NewImage
+					if NewCaption then
+						ImageButton.Title.Text = NewCaption
+					else
+						ImageButton.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageButton.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
 				end
-				if BlackCaption then
-					ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+	
+				function ImageValue:Visible(Value)
+					ImageButton.Visible = Value
 				end
 			end
 
-			function ImageBigValue:Visible(Value)
-				ImageBig.Visible = Value
-			end
-
-			return ImageBigValue
+			return ImageValue
 		end
 
 

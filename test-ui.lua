@@ -2130,7 +2130,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if ImageSettings.ImageType == "Big" then
 				local ImageBig = Elements.Template.ImageBig:Clone()
-				ImageBig.Image.Image = ImageBigSettings.Image
+				ImageBig.Image.Image = ImageSettings.Image
 				ImageBig.Visible = true
 				ImageBig.Parent = TabPage
 

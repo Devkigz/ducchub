@@ -2125,23 +2125,99 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 
 		-- Image (Big)
-		function Tab:CreateBigImageLabel(ImageBigSettings)
-			local ImageBigValue = {}
+		function Tab:CreateImage(ImageSettings)
+			local ImageValue = {}
 
-			local ImageBig = Elements.Template.ImageBig:Clone()
-			ImageBig.Image.Image = ImageBigSettings.Image
-			ImageBig.Visible = true
-			ImageBig.Parent = TabPage
+			if ImageSettings.ImageType == "Big" then
+				local ImageBig = Elements.Template.ImageBig:Clone()
+				ImageBig.Image.Image = ImageBigSettings.Image
+				ImageBig.Visible = true
+				ImageBig.Parent = TabPage
 
-			if ImageBigSettings.Caption then
-				ImageBig.Caption.Text = ImageBigSettings.Caption
-			else
-				ImageBig.Caption.Text = ""
+				if ImageSettings.Caption then
+					ImageBig.Title.Text = ImageSettings.Caption
+				else
+					ImageBig.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
 			end
 
-			if ImageBigSettings.BlackCaption then
-				ImageBig.Caption.TextColor3 = Color3.fromRGB(15, 15, 15)
+			if ImageSettings.ImageType == "Small" then
+				local ImageSmall = Elements.Template.ImageSmall:Clone()
+				ImageSmall.Image.Image = ImageSettings.Image
+				ImageSmall.Visible = true
+				ImageSmall.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageSmall.Title.Text = ImageSettings.Caption
+				else
+					ImageSmall.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageSmall.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
 			end
+
+			if ImageSettings.ImageType == "Right" then
+				local ImageRight = Elements.Template.ImageRight:Clone()
+				ImageRight.Image.Image = ImageSettings.Image
+				ImageRight.Visible = true
+				ImageRight.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageRight.Title.Text = ImageSettings.Caption
+				else
+					ImageRight.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageRight.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+			end
+
+			if ImageSettings.ImageType == "Left" then
+				local ImageLeft = Elements.Template.ImageLeft:Clone()
+				ImageLeft.Image.Image = ImageSettings.Image
+				ImageLeft.Visible = true
+				ImageLeft.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageLeft.Title.Text = ImageSettings.Caption
+				else
+					ImageLeft.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageLeft.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+			end
+
+			if ImageSettings.ImageType == "Button" then
+				local ImageButton = Elements.Template.ImageButton:Clone()
+				ImageButton.Image.Image = ImageSettings.Image
+				ImageButton.Visible = true
+				ImageButton.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageButton.Title.Text = ImageSettings.Caption
+				else
+					ImageButton.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageButton.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				ImageButton.MouseButton1Click:Connect(function()
+					ImageSettings.Callback()
+				end)
+			end
+
+			
 
 			ImageBig.BackgroundTransparency = 1
 			ImageBig.UIStroke.Transparency = 1
@@ -2154,11 +2230,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			function ImageBigValue:SetImage(NewImage, NewCaption, NewBlackCaption)
 				ImageBig.Image.Image = NewImage
-				if Caption then
-					ImageBig.Caption.Text = NewCaption
+				if NewCaption then
+					ImageBig.Title.Text = NewCaption
+				else
+					ImageBig.Title.Text = ""
 				end
 				if BlackCaption then
-					ImageBig.Caption.TextColor3 = Color3.fromRGB(15, 15, 15)
+					ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
 				end
 			end
 

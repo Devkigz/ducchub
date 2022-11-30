@@ -10,7 +10,6 @@ duccveloper | Modding
 ]]
 
 
-
 local version_url = "https://raw.githubusercontent.com/duccveloper/ducchub/main/version.txt"
 local Release = game:HttpGet(version_url)
 local NotificationDuration = 6.5
@@ -2130,7 +2129,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local ImageBigValue = {}
 
 			local ImageBig = Elements.Template.ImageBig:Clone()
-			ImageBig.Image = ImageBigSettings.Image
+			ImageBig.Image.Image = ImageBigSettings.Image
 			ImageBig.Visible = true
 			ImageBig.Parent = TabPage
 
@@ -2152,7 +2151,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			TweenService:Create(ImageBig.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 
 			function ImageBigValue:SetImage(NewImage, NewCaption, NewBlackCaption)
-				ImageBig.Image = NewImage
+				ImageBig.Image.Image = NewImage
 				if Caption then
 					ImageBig.Caption.Text = NewCaption
 				end

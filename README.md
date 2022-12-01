@@ -2,8 +2,11 @@
 The No.69 universal Roblox universal hub.
 
 ## Versions
-DuccHub: 0.1 (pre-release)<br>
-DuccField: 0.1 (:Visible() release)
+- DuccHub: 0.1 (pre-release)<br>
+- DuccField: 0.2 (:SwitchTab() release)
+- test-ui: 0.0.3 (Image test)
+
+#### NOTE: test-ui.lua is for testing purpose. (EXTREMELY UNSTABLE)
 
 ## DuccField Modded Features
 - Element:Visible(Boolean)

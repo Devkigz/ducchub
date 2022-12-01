@@ -115,7 +115,7 @@ local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 
 -- Interface Management
-local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
+local Rayfield = game:GetObjects("rbxassetid://11710149291")[1]
 
 
 
@@ -1261,8 +1261,36 @@ function RayfieldLibrary:CreateWindow(Settings)
 			TabPage.Visible = Value
 		end
 
-		function Tab:JumpTo(Page)
-			Elements.UIPageLayout:JumpTo(Page)
+		function Tab:SwitchTab()
+			if Minimised then return end
+			TweenService:Create(TabButton, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
+			TweenService:Create(TabButton.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 1}):Play()
+			TweenService:Create(TabButton.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
+			TweenService:Create(TabButton.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {ImageTransparency = 0}):Play()
+			TweenService:Create(TabButton, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.TabBackgroundSelected}):Play()
+			TweenService:Create(TabButton.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextColor3 = SelectedTheme.SelectedTabTextColor}):Play()
+			TweenService:Create(TabButton.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {ImageColor3 = SelectedTheme.SelectedTabTextColor}):Play()
+			TweenService:Create(TabButton.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {ImageTransparency = 0.9}):Play()
+
+			for _, OtherTabButton in ipairs(TabList:GetChildren()) do
+				if OtherTabButton.Name ~= "Template" and OtherTabButton.ClassName == "Frame" and OtherTabButton ~= TabButton and OtherTabButton.Name ~= "Placeholder" then
+					TweenService:Create(OtherTabButton, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundColor3 = SelectedTheme.TabBackground}):Play()
+					TweenService:Create(OtherTabButton.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextColor3 = SelectedTheme.TabTextColor}):Play()
+					TweenService:Create(OtherTabButton.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {ImageColor3 = SelectedTheme.TabTextColor}):Play()
+					TweenService:Create(OtherTabButton, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0.7}):Play()
+					TweenService:Create(OtherTabButton.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0.2}):Play()
+					TweenService:Create(OtherTabButton.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {ImageTransparency = 0.2}):Play()
+					TweenService:Create(OtherTabButton.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {ImageTransparency = 0.7}):Play()
+					TweenService:Create(OtherTabButton.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
+				end
+			end
+			if Elements.UIPageLayout.CurrentPage ~= TabPage then
+				TweenService:Create(Elements, TweenInfo.new(1, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 460,0, 330)}):Play()
+				Elements.UIPageLayout:JumpTo(TabPage)
+				wait(0.2)
+				TweenService:Create(Elements, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 475,0, 366)}):Play()
+			end
+			
 		end
 
 		-- Button
@@ -2094,6 +2122,182 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 			
 			return SliderSettings
+		end
+
+		-- Image
+		function Tab:CreateImage(ImageSettings)
+			local ImageValue = {}
+
+			if ImageSettings.ImageType == "Big" then
+				local ImageBig = Elements.Template.ImageBig:Clone()
+				ImageBig.Image.Image = ImageSettings.Image
+				ImageBig.Visible = true
+				ImageBig.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageBig.Title.Text = ImageSettings.Caption
+				else
+					ImageBig.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageBig.Image.Image = NewImage
+					if NewCaption then
+						ImageBig.Title.Text = NewCaption
+					else
+						ImageBig.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageBig.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageBig.Visible = Value
+				end
+			end
+
+			if ImageSettings.ImageType == "Small" then
+				local ImageSmall = Elements.Template.ImageSmall:Clone()
+				ImageSmall.Image.Image = ImageSettings.Image
+				ImageSmall.Visible = true
+				ImageSmall.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageSmall.Title.Text = ImageSettings.Caption
+				else
+					ImageSmall.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageSmall.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageSmall.Image.Image = NewImage
+					if NewCaption then
+						ImageSmall.Title.Text = NewCaption
+					else
+						ImageSmall.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageSmall.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageSmall.Visible = Value
+				end
+			end
+
+			if ImageSettings.ImageType == "Right" then
+				local ImageRight = Elements.Template.ImageRight:Clone()
+				ImageRight.Image.Image = ImageSettings.Image
+				ImageRight.Visible = true
+				ImageRight.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageRight.Title.Text = ImageSettings.Caption
+				else
+					ImageRight.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageRight.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageRight.Image.Image = NewImage
+					if NewCaption then
+						ImageRight.Title.Text = NewCaption
+					else
+						ImageRight.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageRight.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageRight.Visible = Value
+				end
+			end
+
+			if ImageSettings.ImageType == "Left" then
+				local ImageLeft = Elements.Template.ImageLeft:Clone()
+				ImageLeft.Image.Image = ImageSettings.Image
+				ImageLeft.Visible = true
+				ImageLeft.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageLeft.Title.Text = ImageSettings.Caption
+				else
+					ImageLeft.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageLeft.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageLeft.Image.Image = NewImage
+					if NewCaption then
+						ImageLeft.Title.Text = NewCaption
+					else
+						ImageLeft.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageLeft.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageLeft.Visible = Value
+				end
+			end
+
+			if ImageSettings.ImageType == "Button" then
+				local ImageButton = Elements.Template.ImageButton:Clone()
+				ImageButton.Image.Image = ImageSettings.Image
+				ImageButton.Visible = true
+				ImageButton.Parent = TabPage
+
+				if ImageSettings.Caption then
+					ImageButton.Title.Text = ImageSettings.Caption
+				else
+					ImageButton.Title.Text = ""
+				end
+
+				if ImageSettings.BlackCaption then
+					ImageButton.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+				end
+
+				ImageButton.Image.MouseButton1Click:Connect(function()
+					ImageSettings.Callback()
+				end)
+
+				function ImageValue:SetImage(NewImage, NewCaption, NewBlackCaption)
+					ImageButton.Image.Image = NewImage
+					if NewCaption then
+						ImageButton.Title.Text = NewCaption
+					else
+						ImageButton.Title.Text = ""
+					end
+					if BlackCaption then
+						ImageButton.Title.TextColor3 = Color3.fromRGB(15, 15, 15)
+					end
+				end
+	
+				function ImageValue:Visible(Value)
+					ImageButton.Visible = Value
+				end
+			end
+
+			return ImageValue
 		end
 
 

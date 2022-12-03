@@ -52,6 +52,13 @@ local infiniteJump = false
 local target_tp_part = nil
 
 -- Functions
+function date(str)
+    local data = {}
+    local y,m,d,h,i,s,t=str:match"(%d+)-(%d+)-(%d+)T(%d+):(%d+):(%d+).(%d+)Z"
+    data.year=y data.month=m data.day=d data.hour=h data.min=i data.sec=s data.milli=t
+    return data
+end
+
 function checkuserinfo(username)
     local userid = "idk"
 local success, err = pcall(function()
@@ -74,13 +81,13 @@ else
         local id = data.id
         local username = data.name
         local displayname = data.displayName
-
+        
         -- Fetch user avatar and headshot url
         local request =
-            'https://thumbnails.roblox.com/v1/users/avatar?userIds=' .. id .. '&size=150x150&format=Png&isCircular=false'
+            'https://thumbnails.roblox.com/v1/users/avatar?userIds=' .. id .. '&size=48x48&format=Png&isCircular=false'
         local request2 =
             'https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' ..
-            id .. '&size=150x150&format=Png&isCircular=false'
+            id .. '&size=48x48&format=Png&isCircular=false'
         local response = game:HttpGet(request)
         local response2 = game:HttpGet(request2)
         local data = game:GetService('HttpService'):JSONDecode(response)
@@ -93,11 +100,14 @@ else
         else
             _UI_T4_S1_ban:Visible(false)
         end
-        -- Set the text
+        -- Set
         _UI_T4_S2:Set('About ' .. displayname)
         _UI_T4_S2_username:Set('Username: ' .. username)
         _UI_T4_S2_displayname:Set('Display name: ' .. displayname)
         _UI_T4_S2_userid:Set('User ID: ' .. id)
+        _UI_T4_S2_created:Set('Created: ' .. date(created).day .. '/' .. date(created).month .. '/' .. date(created).year)
+        _UI_T4_S3_avatar:SetImage(Players:GetUserThumbnailAsync(id, Enum.ThumbnailType.AvatarThumbnail, Enum.ThumbnailSize.Size48x48), "Avatar of " .. displayname, false)
+        _UI_T4_S3_headshot:SetImage(Players:GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48), "Headshot of " .. displayname, false)
     end
 end
 
@@ -168,7 +178,6 @@ function GetInstance(str)
     if string.match(str, pattern) and string.match(str, pattern2) then
         return true
     else
-
         notify('Error', 'Pattern invalid!', images['cross_icon'])
         return false
     end
@@ -195,7 +204,6 @@ function notGetInstance(String)
 
     return (ObjectSoFar ~= Service and ObjectSoFar) or nil
 end
-
 
 
 -- UI
@@ -374,7 +382,7 @@ local _UI_T3_S1_selectPart =
                                     local part = mouse.Target:GetFullName()
                                     target_tp_part = part
                                     _UI_T3_S1_partLabel:Set("Selected part: " .. part)
-                                    target_tp_part_path = GetInstance(target_tp_part)
+                                    target_tp_part = notGetInstance(target_tp_part)
                                     tool:Destroy()
                                 end
                             end
@@ -393,9 +401,8 @@ local _UI_T3_S1_partPath =
             RemoveTextAfterFocusLost = true,
             Callback = function(Text)
                 if Text == '' then
-                    target_tp_part = 'workspace.Part'
+                    target_tp_part = nil
                     _UI_T3_S1_partLabel:Set("No part selected")
-                    target_tp_part_path = nil
                 else
                     if GetInstance(Text) then
                         local valididk = notGetInstance(Text)
@@ -422,9 +429,8 @@ local _UI_T3_S2_teleport =
                 if target_tp_part == nil then
                     notify('Error', 'No part selected!', images['cross_icon'])
                 else
-                    local part = target_tp_part
-                    Char:MoveTo(part.CFrame + Vector3.new(0, 5, 0))
-                    notify('Teleport', 'Teleported to ' .. target_tp_part, images['tick_icon'])
+                    LocalPlayer.Character:MoveTo(target_tp_part.CFrame.Position + Vector3.new(0, 5, 0))
+                    notify('Teleport', 'Teleported to ' .. tostring(target_tp_part), images['tick_icon'])
                 end
             end,
         }
@@ -459,7 +465,15 @@ _UI_T4_S2 = _UI_T4:CreateSection('About ' .. LocalPlayer.DisplayName)
 _UI_T4_S2_username = _UI_T4:CreateLabel('Username: ' .. LocalPlayer.Name)
 _UI_T4_S2_displayname = _UI_T4:CreateLabel('Displayname: ' .. LocalPlayer.DisplayName)
 _UI_T4_S2_userid = _UI_T4:CreateLabel('User ID: ' .. LocalPlayer.UserId)
-_UI_T4_S2_copyavatarurl =
+_UI_T4_S2_created = _UI_T4:CreateLabel('Created: ' .. LocalPlayer.AccountAge)
+
+_UI_T4_S3 = _UI_T4:CreateSection('Avatar')
+_UI_T4_S3_avatar = _UI_T4:CreateImage({
+    ImageType = 'Left',
+    Image = Players:GetUserThumbnailAsync(LocalPlayer.UserId, Enum.ThumbnailType.AvatarThumbnail, Enum.ThumbnailSize.Size48x48),
+    Caption = 'Avatar preview'
+})
+_UI_T4_S3_copyavatarurl =
     _UI_T4:CreateButton(
         {
             Name = 'Copy Avatar URL',
@@ -469,3 +483,24 @@ _UI_T4_S2_copyavatarurl =
             end
         }
     )
+
+_UI_T4_S3_headshot = _UI_T4:CreateImage({
+    ImageType = 'Left',
+    Image = Players:GetUserThumbnailAsync(LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size48x48),
+    Caption = 'Headshot preview'
+})
+_UI_T4_S3_copyheadshoturl =
+    _UI_T4:CreateButton(
+        {
+            Name = 'Copy Headshot URL',
+            Callback = function()
+                setclipboard(headshoturl)
+                notify('Headshot URL', 'Headshot URL copied to clipboard', images['tick_icon'])
+            end
+        }
+    )
+
+
+
+
+checkuserinfo(LocalPlayer.Name)

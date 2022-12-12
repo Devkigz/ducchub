@@ -1,4 +1,4 @@
-# ducchub
+# ducchub (temp wip cuz no time `:skull:` :)
 The No.69 universal Roblox universal hub.
 
 ## Versions

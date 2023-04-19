@@ -1,4 +1,4 @@
-workspace:GetChildren()[181].Return:Destroy()
+
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 local Window = Rayfield:CreateWindow({
    Name = "anti p2w club",
@@ -23,3 +23,4 @@ local Button = Tab:CreateButton({
 
    end,
 })
+workspace:GetChildren()[181].Return:Destroy()

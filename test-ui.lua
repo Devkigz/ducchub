@@ -13,9 +13,9 @@ duccveloper | Modding
 local version_url = "https://raw.githubusercontent.com/duccveloper/ducchub/main/version.txt"
 local Release = game:HttpGet(version_url)
 local NotificationDuration = 6.5
-local RayfieldFolder = "DuccHub"
+local RayfieldFolder = "WAY TO FEEZ DEEZHUB VERIFY"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
-local ConfigurationExtension = ".ducchub"
+local ConfigurationExtension = ".veryfy"
 
 
 
